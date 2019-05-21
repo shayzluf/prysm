@@ -104,11 +104,11 @@ func ComputeCommittee(
 
 	indices := make([]uint64, endOffset-startOffset)
 	for i := startOffset; i < endOffset; i++ {
-		permutedIndex, err := utils.PermutedIndex(i, validatorCount, seed)
+		shuffledIndex, err := utils.ShuffledIndex(i, validatorCount, seed)
 		if err != nil {
 			return []uint64{}, fmt.Errorf("could not get permuted index at index %d: %v", i, err)
 		}
-		indices[i-startOffset] = validatorIndices[permutedIndex]
+		indices[i-startOffset] = validatorIndices[shuffledIndex]
 	}
 	return indices, nil
 }
